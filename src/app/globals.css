@@ -1,24 +1,94 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-outfit);
 }
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #008848;  /* Tanzanian flag green */
+  --primary-dark: #006633;
+  --accent: #fcd116;   /* Tanzanian flag yellow */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #00bb5d;
+    --primary-dark: #008848;
+    --accent: #ffde33;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* Animation Styles */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes scoreFlash {
+  0% { background-color: rgba(0, 136, 72, 0.2); }
+  50% { background-color: rgba(0, 136, 72, 0.5); }
+  100% { background-color: rgba(0, 136, 72, 0.2); }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.live-score-flash {
+  animation: scoreFlash 2s infinite;
+}
+
+/* Custom Component Classes */
+.btn {
+  @apply px-4 py-2 rounded-md font-medium transition-all duration-200;
+}
+
+.btn-primary {
+  @apply bg-green-600 hover:bg-green-700 text-white hover:shadow-md;
+}
+
+.card {
+  @apply bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300;
+}
+
+.section-title {
+  @apply text-3xl font-bold text-green-600 dark:text-green-400 mb-4;
 }
