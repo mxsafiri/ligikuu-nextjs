@@ -2,10 +2,13 @@ import LiveScoreCard from "@/components/ui/LiveScoreCard";
 import { MatchData } from "@/types";
 
 async function getLiveScores() {
-  // In a production environment, we'd use absolute URLs
-  // For development, we'll use relative URLs
   try {
-    const res = await fetch('/api/livescores', { next: { revalidate: 60 } });
+    // Use an absolute URL with the origin for server-side fetching
+    const baseUrl = process.env.VERCEL_URL 
+      ? `https://${process.env.VERCEL_URL}` 
+      : 'http://localhost:3000';
+      
+    const res = await fetch(`${baseUrl}/api/livescores`, { next: { revalidate: 60 } });
     
     if (!res.ok) {
       throw new Error('Failed to fetch live scores');

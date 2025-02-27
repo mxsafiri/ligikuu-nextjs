@@ -2,7 +2,12 @@ import StandingsTable from "@/components/ui/StandingsTable";
 
 async function getStandings() {
   try {
-    const res = await fetch('/api/standings', { next: { revalidate: 3600 } });
+    // Use an absolute URL with the origin for server-side fetching
+    const baseUrl = process.env.VERCEL_URL 
+      ? `https://${process.env.VERCEL_URL}` 
+      : 'http://localhost:3000';
+      
+    const res = await fetch(`${baseUrl}/api/standings`, { next: { revalidate: 3600 } });
     
     if (!res.ok) {
       throw new Error('Failed to fetch standings');

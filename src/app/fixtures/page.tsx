@@ -3,7 +3,12 @@ import { FixtureData } from "@/types";
 
 async function getFixtures() {
   try {
-    const res = await fetch('/api/fixtures', { next: { revalidate: 3600 } });
+    // Use an absolute URL with the origin for server-side fetching
+    const baseUrl = process.env.VERCEL_URL 
+      ? `https://${process.env.VERCEL_URL}` 
+      : 'http://localhost:3000';
+    
+    const res = await fetch(`${baseUrl}/api/fixtures`, { next: { revalidate: 3600 } });
     
     if (!res.ok) {
       throw new Error('Failed to fetch fixtures');
