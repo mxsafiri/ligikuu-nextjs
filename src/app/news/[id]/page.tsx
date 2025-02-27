@@ -6,13 +6,10 @@ import fs from 'fs';
 import path from 'path';
 import { NewsArticle } from '@/types';
 
-// Define the page props according to Next.js dynamic route parameters
-interface NewsArticlePageProps {
-  params: {
-    id: string;
-  };
-  searchParams?: Record<string, string | string[] | undefined>;
-}
+// Define the params type for this specific page
+type Params = {
+  id: string;
+};
 
 async function getNewsArticle(id: string): Promise<NewsArticle | null> {
   try {
@@ -35,7 +32,7 @@ async function getNewsArticle(id: string): Promise<NewsArticle | null> {
   }
 }
 
-export default async function NewsArticlePage({ params }: NewsArticlePageProps) {
+export default async function NewsArticlePage({ params }: { params: Params }) {
   const article = await getNewsArticle(params.id);
   
   if (!article) {
