@@ -1,4 +1,5 @@
 import FixtureCard from "@/components/ui/FixtureCard";
+import { FixtureData } from "@/types";
 
 async function getFixtures() {
   try {
@@ -9,7 +10,7 @@ async function getFixtures() {
     }
     
     const data = await res.json();
-    return data.data;
+    return data.data as FixtureData[];
   } catch (error) {
     console.error('Error fetching fixtures:', error);
     return [];
@@ -30,7 +31,7 @@ export default async function FixturesPage() {
       
       {fixtures && fixtures.length > 0 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {fixtures.map((fixture: any) => (
+          {fixtures.map((fixture: FixtureData) => (
             <FixtureCard
               key={fixture.id}
               homeTeam={fixture.homeTeam}

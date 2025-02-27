@@ -1,4 +1,5 @@
 import LiveScoreCard from "@/components/ui/LiveScoreCard";
+import { MatchData } from "@/types";
 
 async function getLiveScores() {
   // In a production environment, we'd use absolute URLs
@@ -11,7 +12,7 @@ async function getLiveScores() {
     }
     
     const data = await res.json();
-    return data.data;
+    return data.data as MatchData[];
   } catch (error) {
     console.error('Error fetching live scores:', error);
     return [];
@@ -40,7 +41,7 @@ export default async function Home() {
       
       {liveScores && liveScores.length > 0 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {liveScores.map((match: any) => (
+          {liveScores.map((match: MatchData) => (
             <LiveScoreCard
               key={match.id}
               homeTeam={match.homeTeam}

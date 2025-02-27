@@ -1,10 +1,12 @@
 import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import fs from 'fs';
 import path from 'path';
+import { NewsArticle } from '@/types';
 
-async function getNewsArticle(id: string) {
+async function getNewsArticle(id: string): Promise<NewsArticle | null> {
   try {
     // Read from the news JSON file
     const filePath = path.join(process.cwd(), 'src/data/news.json');
@@ -12,7 +14,7 @@ async function getNewsArticle(id: string) {
     const data = JSON.parse(fileData);
     
     // Find the article with the matching ID
-    const article = data.news.find((item: any) => item.id.toString() === id);
+    const article = data.news.find((item: NewsArticle) => item.id.toString() === id);
     
     if (!article) {
       return null;
@@ -60,16 +62,21 @@ export default async function NewsArticlePage({ params }: { params: { id: string
           {/* If we have an image, show it, otherwise show a placeholder */}
           <div className="absolute inset-0 flex items-center justify-center text-gray-500 dark:text-gray-400">
             {article.image ? (
-              <img 
-                src={article.image} 
-                alt={article.title} 
-                className="h-full w-full object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.onerror = null;
-                  target.src = '/images/placeholder.jpg';
-                }}
-              />
+              <div className="relative h-full w-full">
+                <Image 
+                  src={article.image} 
+                  alt={article.title} 
+                  fill
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  className="object-cover"
+                  priority
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.onerror = null;
+                    target.src = '/images/placeholder.jpg';
+                  }}
+                />
+              </div>
             ) : (
               <span>No image available</span>
             )}

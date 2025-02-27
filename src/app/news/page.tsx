@@ -1,4 +1,5 @@
 import NewsCard from "@/components/ui/NewsCard";
+import { NewsArticle } from "@/types";
 
 async function getNews() {
   try {
@@ -9,7 +10,7 @@ async function getNews() {
     }
     
     const data = await res.json();
-    return data.data;
+    return data.data as NewsArticle[];
   } catch (error) {
     console.error('Error fetching news:', error);
     return [];
@@ -30,7 +31,7 @@ export default async function NewsPage() {
       
       {news && news.length > 0 ? (
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {news.map((article: any) => (
+          {news.map((article: NewsArticle) => (
             <NewsCard
               key={article.id}
               id={article.id}

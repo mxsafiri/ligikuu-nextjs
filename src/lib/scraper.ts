@@ -1,11 +1,12 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
+import { MatchData } from '@/types';
 
 /**
  * Scrapes live scores from a public football website
  * @returns Promise<Array> Live match data
  */
-export async function scrapeLiveScores() {
+export async function scrapeLiveScores(): Promise<MatchData[]> {
   try {
     // We're using a sample site - in production, replace with an actual source
     const response = await axios.get('https://www.flashscore.co.tz/football/tanzania/premier-league/');
@@ -13,7 +14,7 @@ export async function scrapeLiveScores() {
     const html = response.data;
     const $ = cheerio.load(html);
     
-    const matches: any[] = [];
+    const matches: MatchData[] = [];
     
     // This selector would need to be adjusted based on the actual site structure
     // This is a simplified example
@@ -26,50 +27,20 @@ export async function scrapeLiveScores() {
       const matchStatus = $(element).find('.event__stage').text().trim();
       
       matches.push({
+        id: `match-${index}`,
         homeTeam,
         awayTeam,
         homeScore,
         awayScore,
         matchTime,
         matchStatus,
-        id: index + 1,
       });
     });
     
     return matches;
   } catch (error) {
     console.error('Error scraping live scores:', error);
-    
-    // Return fallback data in case of error
-    return [
-      {
-        id: 1,
-        homeTeam: 'Simba SC',
-        awayTeam: 'Young Africans',
-        homeScore: '2',
-        awayScore: '1',
-        matchTime: '75\'',
-        matchStatus: 'In Progress'
-      },
-      {
-        id: 2,
-        homeTeam: 'Azam FC',
-        awayTeam: 'Namungo FC',
-        homeScore: '1',
-        awayScore: '0',
-        matchTime: '63\'',
-        matchStatus: 'In Progress'
-      },
-      {
-        id: 3,
-        homeTeam: 'Kagera Sugar',
-        awayTeam: 'Coastal Union',
-        homeScore: '0',
-        awayScore: '0',
-        matchTime: '14:00',
-        matchStatus: 'Not Started'
-      }
-    ];
+    return [];
   }
 }
 
@@ -78,7 +49,7 @@ export async function scrapeLiveScores() {
  * @param matchId The ID of the match to get details for
  * @returns Promise<Object> Match details
  */
-export async function scrapeMatchDetails(matchId: string) {
+export async function scrapeMatchDetails(matchId: string): Promise<MatchData> {
   try {
     // In a real app, this would scrape from an actual site
     // For demonstration, we're returning mock data
