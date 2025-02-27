@@ -1,0 +1,180 @@
+{
+  "standings": [
+    {
+      "position": 1,
+      "team": "Simba SC",
+      "played": 22,
+      "won": 18,
+      "drawn": 3,
+      "lost": 1,
+      "goalsFor": 45,
+      "goalsAgainst": 12,
+      "points": 57
+    },
+    {
+      "position": 2,
+      "team": "Young Africans",
+      "played": 22,
+      "won": 17,
+      "drawn": 3,
+      "lost": 2,
+      "goalsFor": 41,
+      "goalsAgainst": 14,
+      "points": 54
+    },
+    {
+      "position": 3,
+      "team": "Azam FC",
+      "played": 22,
+      "won": 15,
+      "drawn": 4,
+      "lost": 3,
+      "goalsFor": 37,
+      "goalsAgainst": 16,
+      "points": 49
+    },
+    {
+      "position": 4,
+      "team": "Kagera Sugar",
+      "played": 22,
+      "won": 12,
+      "drawn": 5,
+      "lost": 5,
+      "goalsFor": 30,
+      "goalsAgainst": 19,
+      "points": 41
+    },
+    {
+      "position": 5,
+      "team": "Namungo FC",
+      "played": 22,
+      "won": 11,
+      "drawn": 5,
+      "lost": 6,
+      "goalsFor": 28,
+      "goalsAgainst": 21,
+      "points": 38
+    },
+    {
+      "position": 6,
+      "team": "KMC FC",
+      "played": 22,
+      "won": 9,
+      "drawn": 8,
+      "lost": 5,
+      "goalsFor": 26,
+      "goalsAgainst": 19,
+      "points": 35
+    },
+    {
+      "position": 7,
+      "team": "Mtibwa Sugar",
+      "played": 22,
+      "won": 8,
+      "drawn": 8,
+      "lost": 6,
+      "goalsFor": 25,
+      "goalsAgainst": 22,
+      "points": 32
+    },
+    {
+      "position": 8,
+      "team": "Tanzania Prisons",
+      "played": 22,
+      "won": 8,
+      "drawn": 7,
+      "lost": 7,
+      "goalsFor": 22,
+      "goalsAgainst": 23,
+      "points": 31
+    },
+    {
+      "position": 9,
+      "team": "Coastal Union",
+      "played": 22,
+      "won": 8,
+      "drawn": 6,
+      "lost": 8,
+      "goalsFor": 24,
+      "goalsAgainst": 25,
+      "points": 30
+    },
+    {
+      "position": 10,
+      "team": "Ruvu Shooting",
+      "played": 22,
+      "won": 7,
+      "drawn": 6,
+      "lost": 9,
+      "goalsFor": 20,
+      "goalsAgainst": 27,
+      "points": 27
+    },
+    {
+      "position": 11,
+      "team": "Mbeya City",
+      "played": 22,
+      "won": 7,
+      "drawn": 5,
+      "lost": 10,
+      "goalsFor": 18,
+      "goalsAgainst": 28,
+      "points": 26
+    },
+    {
+      "position": 12,
+      "team": "Lipuli FC",
+      "played": 22,
+      "won": 6,
+      "drawn": 5,
+      "lost": 11,
+      "goalsFor": 19,
+      "goalsAgainst": 30,
+      "points": 23
+    },
+    {
+      "position": 13,
+      "team": "Ihefu FC",
+      "played": 22,
+      "won": 5,
+      "drawn": 7,
+      "lost": 10,
+      "goalsFor": 18,
+      "goalsAgainst": 30,
+      "points": 22
+    },
+    {
+      "position": 14,
+      "team": "Mwadui FC",
+      "played": 22,
+      "won": 5,
+      "drawn": 6,
+      "lost": 11,
+      "goalsFor": 15,
+      "goalsAgainst": 29,
+      "points": 21
+    },
+    {
+      "position": 15,
+      "team": "Biashara United",
+      "played": 22,
+      "won": 4,
+      "drawn": 8,
+      "lost": 10,
+      "goalsFor": 16,
+      "goalsAgainst": 27,
+      "points": 20
+    },
+    {
+      "position": 16,
+      "team": "Dodoma Jiji FC",
+      "played": 22,
+      "won": 4,
+      "drawn": 6,
+      "lost": 12,
+      "goalsFor": 15,
+      "goalsAgainst": 32,
+      "points": 18
+    }
+  ]
+}

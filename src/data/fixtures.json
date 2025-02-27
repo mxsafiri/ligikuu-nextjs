@@ -1,0 +1,76 @@
+{
+  "fixtures": [
+    {
+      "id": 1,
+      "homeTeam": "Simba SC",
+      "awayTeam": "Young Africans",
+      "date": "2025-03-03",
+      "time": "15:00",
+      "venue": "Benjamin Mkapa Stadium",
+      "competition": "Tanzania Premier League"
+    },
+    {
+      "id": 2,
+      "homeTeam": "Azam FC",
+      "awayTeam": "Namungo FC",
+      "date": "2025-03-03",
+      "time": "17:00",
+      "venue": "Azam Complex Stadium",
+      "competition": "Tanzania Premier League"
+    },
+    {
+      "id": 3,
+      "homeTeam": "Kagera Sugar",
+      "awayTeam": "Coastal Union",
+      "date": "2025-03-04",
+      "time": "14:00",
+      "venue": "Kaitaba Stadium",
+      "competition": "Tanzania Premier League"
+    },
+    {
+      "id": 4,
+      "homeTeam": "Lipuli FC",
+      "awayTeam": "Mbeya City",
+      "date": "2025-03-04",
+      "time": "16:30",
+      "venue": "Samora Stadium",
+      "competition": "Tanzania Premier League"
+    },
+    {
+      "id": 5,
+      "homeTeam": "Tanzania Prisons",
+      "awayTeam": "KMC FC",
+      "date": "2025-03-05",
+      "time": "15:00",
+      "venue": "Sokoine Stadium",
+      "competition": "Tanzania Premier League"
+    },
+    {
+      "id": 6,
+      "homeTeam": "Mtibwa Sugar",
+      "awayTeam": "Biashara United",
+      "date": "2025-03-05",
+      "time": "16:30",
+      "venue": "Manungu Complex",
+      "competition": "Tanzania Premier League"
+    },
+    {
+      "id": 7,
+      "homeTeam": "Dodoma Jiji FC",
+      "awayTeam": "Ruvu Shooting",
+      "date": "2025-03-06",
+      "time": "14:30",
+      "venue": "Jamhuri Stadium",
+      "competition": "Tanzania Premier League"
+    },
+    {
+      "id": 8,
+      "homeTeam": "Mwadui FC",
+      "awayTeam": "Ihefu FC",
+      "date": "2025-03-06",
+      "time": "16:30",
+      "venue": "Mwadui Complex",
+      "competition": "Tanzania Premier League"
+    }
+  ]
+}

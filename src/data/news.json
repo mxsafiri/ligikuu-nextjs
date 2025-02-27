@@ -1,0 +1,49 @@
+{
+  "news": [
+    {
+      "id": 1,
+      "title": "Simba SC Signs New Striker from Ghana",
+      "content": "Simba Sports Club has completed the signing of Ghanaian striker Ibrahim Mensah from Asante Kotoko on a three-year deal. The 23-year-old forward scored 18 goals in the Ghana Premier League last season and is expected to strengthen Simba's attack ahead of their CAF Champions League campaign.",
+      "author": "Benjamin Mkapa",
+      "date": "2025-02-25",
+      "image": "/images/news/simba-striker.jpg",
+      "category": "Transfers"
+    },
+    {
+      "id": 2,
+      "title": "Young Africans Appoint New Head Coach",
+      "content": "Young Africans FC has appointed Brazilian coach Carlos Silva as their new head coach following the departure of Nasreddine Nabi. Silva, 47, previously managed several clubs in Brazil's Serie A and has experience in African football having coached Petro de Luanda in Angola. He has signed a two-year contract with the Tanzanian giants.",
+      "author": "Sarah Kimario",
+      "date": "2025-02-24",
+      "image": "/images/news/yanga-coach.jpg",
+      "category": "Club News"
+    },
+    {
+      "id": 3,
+      "title": "Tanzania FA Announces New Broadcasting Deal",
+      "content": "The Tanzania Football Federation (TFF) has announced a new five-year broadcasting deal worth $15 million with SportsTZ Media. The deal, which begins next season, will ensure all Tanzania Premier League matches are broadcast live across East Africa. The agreement marks a significant increase from the previous deal and will provide additional revenue for clubs.",
+      "author": "David Sabuni",
+      "date": "2025-02-23",
+      "image": "/images/news/tff-deal.jpg",
+      "category": "League News"
+    },
+    {
+      "id": 4,
+      "title": "Azam FC Stadium Renovation Completed",
+      "content": "Azam FC has completed the renovation of their stadium, expanding the seating capacity to 25,000 and upgrading facilities to meet CAF standards for hosting international matches. The renovation, which cost approximately $5 million, includes new player facilities, improved media areas, and enhanced fan amenities. The first match at the renovated stadium will be against Namungo FC next week.",
+      "author": "Grace Mwakasege",
+      "date": "2025-02-22",
+      "image": "/images/news/azam-stadium.jpg",
+      "category": "Infrastructure"
+    },
+    {
+      "id": 5,
+      "title": "TPL Golden Boot Race Heats Up",
+      "content": "The race for the Tanzania Premier League Golden Boot is intensifying as Simba's John Bocco leads with 14 goals, closely followed by Young Africans' Fiston Mayele with 13 goals, and Azam's Prince Dube with 12 goals. With just eight matches remaining in the season, the competition among the top scorers is expected to be fierce as they battle for the prestigious individual award.",
+      "author": "Michael Wangwe",
+      "date": "2025-02-21",
+      "image": "/images/news/golden-boot.jpg",
+      "category": "Player News"
+    }
+  ]
+}
