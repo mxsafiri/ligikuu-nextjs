@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 
 interface LiveScoreCardProps {
   homeTeam: string;
@@ -27,12 +26,8 @@ export default function LiveScoreCard({
   };
   
   return (
-    <motion.div 
-      className="card p-4 overflow-hidden"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      whileHover={{ scale: 1.02 }}
+    <div 
+      className="card p-4 overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl"
     >
       {/* Match Status Banner */}
       <div className={`-mx-4 -mt-4 px-4 py-2 mb-3 ${isLive ? 'bg-green-500 text-white' : 'bg-gray-100 dark:bg-gray-700'}`}>
@@ -54,58 +49,52 @@ export default function LiveScoreCard({
       </div>
       
       {/* Teams and Scores */}
-      <div className="flex flex-col space-y-4">
+      <div className="grid grid-cols-3 gap-4 items-center">
         {/* Home Team */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center flex-1">
-            <div className="mr-3 h-8 w-8 relative overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600">
-              <Image 
-                src={getTeamLogo(homeTeam)} 
-                alt={`${homeTeam} logo`}
-                width={32} 
-                height={32}
-                className="object-contain"
-                onError={(e) => {
-                  // Fallback if image fails to load
-                  e.currentTarget.src = '/team-logos/default.png';
-                }}
-              />
+        <div className="flex flex-col items-center space-y-2">
+          <div className="relative w-12 h-12 transition-transform duration-300 hover:scale-110">
+            <Image
+              src={getTeamLogo(homeTeam)}
+              alt={`${homeTeam} logo`}
+              fill
+              className="object-contain"
+              onError={(e) => {
+                // Fallback if image fails to load
+                e.currentTarget.src = '/team-logos/default.png';
+              }}
+            />
+          </div>
+          <span className="text-sm font-medium text-center dark:text-gray-200">{homeTeam}</span>
+        </div>
+
+        {/* Score */}
+        <div className="flex justify-center items-center">
+          {hasScores ? (
+            <div className="text-2xl font-bold text-center space-x-2 dark:text-white">
+              <span>{homeScore}</span>
+              <span>-</span>
+              <span>{awayScore}</span>
             </div>
-            <p className="font-medium truncate">{homeTeam}</p>
-          </div>
-          <div className={`font-bold text-xl px-2 py-1 min-w-[40px] text-center ${hasScores && isLive ? 'live-score-flash rounded' : ''}`}>
-            {homeScore}
-          </div>
+          ) : (
+            <span className="text-sm text-gray-500 dark:text-gray-400">vs</span>
+          )}
         </div>
-        
-        {/* Score Separator */}
-        <div className="flex items-center justify-center">
-          <div className="h-[1px] flex-1 bg-gray-200 dark:bg-gray-700"></div>
-          <span className="px-2 text-sm text-gray-500 dark:text-gray-400">VS</span>
-          <div className="h-[1px] flex-1 bg-gray-200 dark:bg-gray-700"></div>
-        </div>
-        
+
         {/* Away Team */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center flex-1">
-            <div className="mr-3 h-8 w-8 relative overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600">
-              <Image 
-                src={getTeamLogo(awayTeam)} 
-                alt={`${awayTeam} logo`}
-                width={32} 
-                height={32}
-                className="object-contain"
-                onError={(e) => {
-                  // Fallback if image fails to load
-                  e.currentTarget.src = '/team-logos/default.png';
-                }}
-              />
-            </div>
-            <p className="font-medium truncate">{awayTeam}</p>
+        <div className="flex flex-col items-center space-y-2">
+          <div className="relative w-12 h-12 transition-transform duration-300 hover:scale-110">
+            <Image
+              src={getTeamLogo(awayTeam)}
+              alt={`${awayTeam} logo`}
+              fill
+              className="object-contain"
+              onError={(e) => {
+                // Fallback if image fails to load
+                e.currentTarget.src = '/team-logos/default.png';
+              }}
+            />
           </div>
-          <div className={`font-bold text-xl px-2 py-1 min-w-[40px] text-center ${hasScores && isLive ? 'live-score-flash rounded' : ''}`}>
-            {awayScore}
-          </div>
+          <span className="text-sm font-medium text-center dark:text-gray-200">{awayTeam}</span>
         </div>
       </div>
       
@@ -117,6 +106,6 @@ export default function LiveScoreCard({
           </button>
         </div>
       )}
-    </motion.div>
+    </div>
   );
 }
