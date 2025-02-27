@@ -10,9 +10,9 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
-  // Navigation routes
+  // Navigation routes with updated paths
   const routes = [
-    { href: "/", label: "Live Scores", icon: "⚽" },
+    { href: "/live-scores", label: "Live Scores", icon: "⚽" },
     { href: "/standings", label: "Standings", icon: "🏆" },
     { href: "/fixtures", label: "Fixtures", icon: "📅" },
     { href: "/news", label: "News", icon: "📰" },
@@ -104,29 +104,27 @@ export default function Navigation() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <div className="space-y-1 px-2 pb-3 pt-2">
-            {routes.map((route) => (
-              <Link
-                key={route.href}
-                href={route.href}
-                className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-base font-medium transition-colors duration-200
-                  ${pathname === route.href
-                    ? "bg-green-50 text-green-600 dark:bg-green-900/20 dark:text-green-400"
-                    : "text-gray-600 hover:bg-gray-50 hover:text-green-600 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-green-400"
-                  }`}
-              >
-                <span className="text-xl">{route.icon}</span>
-                <span>{route.label}</span>
-              </Link>
-            ))}
+        {/* Mobile Navigation Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden">
+            <div className="space-y-1 px-2 pb-3 pt-2">
+              {routes.map((route) => (
+                <Link
+                  key={route.href}
+                  href={route.href}
+                  className={`flex items-center space-x-2 rounded-lg px-3 py-2 text-base font-medium transition-colors duration-200
+                    ${pathname === route.href
+                      ? "bg-green-50 text-green-600 dark:bg-green-900/20 dark:text-green-400"
+                      : "text-gray-600 hover:bg-gray-50 hover:text-green-600 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-green-400"
+                    }`}
+                >
+                  <span className="text-lg">{route.icon}</span>
+                  <span>{route.label}</span>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </nav>
     </header>
   );
