@@ -22,15 +22,45 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-sans);
+@layer base {
+  body {
+    @apply text-gray-900 bg-white dark:text-gray-100 dark:bg-gray-900;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+  }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 700;
+@layer components {
+  .nav-link {
+    @apply flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200;
+  }
+
+  .nav-link-active {
+    @apply bg-green-50 text-green-600 dark:bg-green-900/20 dark:text-green-500;
+  }
+
+  .nav-link-inactive {
+    @apply text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 dark:bg-green-500 dark:hover:bg-green-600;
+  }
+
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:shadow-xl hover:scale-[1.02];
+  }
 }
 
 /* Animation Styles */
@@ -50,42 +80,14 @@ h1, h2, h3, h4, h5, h6 {
   100% { transform: scale(1); }
 }
 
-@keyframes scoreFlash {
-  0% { background-color: rgba(0, 136, 72, 0.2); }
-  50% { background-color: rgba(0, 136, 72, 0.5); }
-  100% { background-color: rgba(0, 136, 72, 0.2); }
-}
-
-/* Animation Classes */
 .animate-fade-in {
-  animation: fadeIn 0.5s ease-in-out;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .animate-slide-up {
   animation: slideUp 0.5s ease-out;
 }
 
-.animate-pulse {
+.animate-pulse-slow {
   animation: pulse 2s infinite;
-}
-
-.live-score-flash {
-  animation: scoreFlash 2s infinite;
-}
-
-/* Custom Component Classes */
-.btn {
-  @apply px-4 py-2 rounded-md font-medium transition-all duration-200;
-}
-
-.btn-primary {
-  @apply bg-green-600 hover:bg-green-700 text-white hover:shadow-md;
-}
-
-.card {
-  @apply bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300;
-}
-
-.section-title {
-  @apply text-3xl font-bold text-green-600 dark:text-green-400 mb-4;
 }
