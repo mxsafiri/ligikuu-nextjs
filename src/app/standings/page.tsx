@@ -1,28 +1,68 @@
 import StandingsTable from "@/components/ui/StandingsTable";
 
-async function getStandings() {
-  try {
-    // Use an absolute URL with the origin for server-side fetching
-    const baseUrl = process.env.VERCEL_URL 
-      ? `https://${process.env.VERCEL_URL}` 
-      : 'http://localhost:3000';
-      
-    const res = await fetch(`${baseUrl}/api/standings`, { next: { revalidate: 3600 } });
-    
-    if (!res.ok) {
-      throw new Error('Failed to fetch standings');
+function getStandings() {
+  // Mock standings data
+  return [
+    {
+      position: 1,
+      team: "Simba SC",
+      played: 23,
+      won: 18,
+      drawn: 3,
+      lost: 2,
+      goalsFor: 45,
+      goalsAgainst: 13,
+      points: 57
+    },
+    {
+      position: 2,
+      team: "Young Africans",
+      played: 23,
+      won: 17,
+      drawn: 4,
+      lost: 2,
+      goalsFor: 38,
+      goalsAgainst: 10,
+      points: 55
+    },
+    {
+      position: 3,
+      team: "Azam FC",
+      played: 23,
+      won: 14,
+      drawn: 5,
+      lost: 4,
+      goalsFor: 32,
+      goalsAgainst: 15,
+      points: 47
+    },
+    {
+      position: 4,
+      team: "Namungo FC",
+      played: 23,
+      won: 12,
+      drawn: 6,
+      lost: 5,
+      goalsFor: 27,
+      goalsAgainst: 17,
+      points: 42
+    },
+    {
+      position: 5,
+      team: "Coastal Union",
+      played: 23,
+      won: 10,
+      drawn: 7,
+      lost: 6,
+      goalsFor: 25,
+      goalsAgainst: 20,
+      points: 37
     }
-    
-    const data = await res.json();
-    return data.data;
-  } catch (error) {
-    console.error('Error fetching standings:', error);
-    return [];
-  }
+  ];
 }
 
-export default async function StandingsPage() {
-  const standings = await getStandings();
+export default function StandingsPage() {
+  const standings = getStandings();
   
   return (
     <div className="space-y-8">

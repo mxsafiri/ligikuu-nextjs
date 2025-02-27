@@ -1,51 +1,58 @@
 import NewsCard from "@/components/ui/NewsCard";
-import { NewsArticle } from "@/types";
+import { NewsItem } from "@/types";
 
-async function getNews() {
-  try {
-    // Use an absolute URL with the origin for server-side fetching
-    const baseUrl = process.env.VERCEL_URL 
-      ? `https://${process.env.VERCEL_URL}` 
-      : 'http://localhost:3000';
-      
-    const res = await fetch(`${baseUrl}/api/news`, { next: { revalidate: 3600 } });
-    
-    if (!res.ok) {
-      throw new Error('Failed to fetch news');
+function getNews(): NewsItem[] {
+  // Mock news data
+  return [
+    {
+      id: "1",
+      title: "Simba SC Signs New Striker from Ghana",
+      summary: "Simba Sports Club has completed the signing of Ghanaian striker Ibrahim Mensah",
+      content: "Simba Sports Club has completed the signing of Ghanaian striker Ibrahim Mensah from Asante Kotoko on a three-year deal. The 23-year-old forward scored 18 goals in the Ghana Premier League last season.",
+      author: "Benjamin Mkapa",
+      date: "2025-02-25",
+      category: "Transfers"
+    },
+    {
+      id: "2",
+      title: "Young Africans Appoint New Head Coach",
+      summary: "Young Africans FC has appointed Brazilian coach Carlos Silva as their new head coach",
+      content: "Young Africans FC has appointed Brazilian coach Carlos Silva as their new head coach following the departure of Nasreddine Nabi.",
+      author: "Sarah Makamba",
+      date: "2025-02-23",
+      category: "Management"
+    },
+    {
+      id: "3",
+      title: "Tanzania Premier League Announces New Broadcast Deal",
+      summary: "The Tanzania Premier League has signed a new broadcast deal worth $5 million",
+      content: "The Tanzania Premier League has signed a new broadcast deal worth $5 million with SuperSport for the next three seasons.",
+      author: "John Bocco",
+      date: "2025-02-20",
+      category: "Business"
     }
-    
-    const data = await res.json();
-    return data.data as NewsArticle[];
-  } catch (error) {
-    console.error('Error fetching news:', error);
-    return [];
-  }
+  ];
 }
 
-export default async function NewsPage() {
-  const news = await getNews();
+export default function NewsPage() {
+  const news = getNews();
   
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold text-green-600 dark:text-green-400">Latest News</h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          Updates and analysis from the Tanzania Premier League
-        </p>
-      </div>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6 text-green-600 dark:text-green-400">Latest News</h1>
       
       {news && news.length > 0 ? (
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {news.map((article: NewsArticle) => (
-            <NewsCard
-              key={article.id}
-              id={article.id}
-              title={article.title}
-              content={article.content}
-              author={article.author}
-              date={article.date}
-              image={article.image}
-              category={article.category}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {news.map((item) => (
+            <NewsCard 
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              content={item.summary} // Use summary as content
+              image="/images/placeholder.jpg"
+              date={item.date}
+              author={item.author}
+              category={item.category}
             />
           ))}
         </div>

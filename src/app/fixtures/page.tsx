@@ -1,29 +1,50 @@
 import FixtureCard from "@/components/ui/FixtureCard";
 import { FixtureData } from "@/types";
 
-async function getFixtures() {
-  try {
-    // Use an absolute URL with the origin for server-side fetching
-    const baseUrl = process.env.VERCEL_URL 
-      ? `https://${process.env.VERCEL_URL}` 
-      : 'http://localhost:3000';
-    
-    const res = await fetch(`${baseUrl}/api/fixtures`, { next: { revalidate: 3600 } });
-    
-    if (!res.ok) {
-      throw new Error('Failed to fetch fixtures');
+function getFixtures(): FixtureData[] {
+  // Mock fixture data
+  return [
+    {
+      id: "1",
+      homeTeam: "Simba SC",
+      awayTeam: "Young Africans",
+      date: "2025-03-01T16:00:00Z",
+      time: "16:00",
+      venue: "Benjamin Mkapa Stadium",
+      competition: "Tanzania Premier League"
+    },
+    {
+      id: "2",
+      homeTeam: "Azam FC",
+      awayTeam: "Coastal Union",
+      date: "2025-03-02T14:00:00Z",
+      time: "14:00",
+      venue: "Azam Complex Stadium",
+      competition: "Tanzania Premier League"
+    },
+    {
+      id: "3",
+      homeTeam: "Namungo FC",
+      awayTeam: "KMC",
+      date: "2025-03-02T16:00:00Z",
+      time: "16:00",
+      venue: "Majaliwa Stadium",
+      competition: "Tanzania Premier League"
+    },
+    {
+      id: "4",
+      homeTeam: "Mtibwa Sugar",
+      awayTeam: "Mbeya City",
+      date: "2025-03-03T14:00:00Z",
+      time: "14:00",
+      venue: "Jamhuri Stadium",
+      competition: "Tanzania Premier League"
     }
-    
-    const data = await res.json();
-    return data.data as FixtureData[];
-  } catch (error) {
-    console.error('Error fetching fixtures:', error);
-    return [];
-  }
+  ];
 }
 
-export default async function FixturesPage() {
-  const fixtures = await getFixtures();
+export default function FixturesPage() {
+  const fixtures = getFixtures();
   
   return (
     <div className="space-y-8">

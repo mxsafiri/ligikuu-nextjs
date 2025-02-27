@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+"use client";
+
 import TeamLogo from "./TeamLogo";
 
 interface TeamStanding {
@@ -19,9 +20,9 @@ interface StandingsTableProps {
 
 export default function StandingsTable({ standings }: StandingsTableProps) {
   // Get team logo URL - in production, this would come from an API or database
-  const getTeamLogo = (teamName: string) => {
-    return `/team-logos/${teamName.toLowerCase().replace(/\s+/g, '-')}.png`;
-  };
+  // const getTeamLogo = (teamName: string) => {
+  //   return `/team-logos/${teamName.toLowerCase().replace(/\s+/g, '-')}.png`;
+  // };
 
   // Calculate goal difference
   const getGoalDifference = (goalsFor: number, goalsAgainst: number) => {
@@ -38,10 +39,7 @@ export default function StandingsTable({ standings }: StandingsTableProps) {
   };
 
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+    <div 
       className="w-full overflow-hidden rounded-xl border bg-white shadow-md dark:border-gray-700 dark:bg-gray-800"
     >
       <div className="overflow-x-auto">
@@ -84,16 +82,9 @@ export default function StandingsTable({ standings }: StandingsTableProps) {
               }
               
               return (
-                <motion.tr 
+                <tr 
                   key={team.position} 
                   className={`${rowClass} hover:bg-gray-50 dark:hover:bg-gray-700/30 cursor-pointer`}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  whileHover={{ 
-                    backgroundColor: "rgba(229, 231, 235, 0.5)",
-                    transition: { duration: 0.1 }
-                  }}
                 >
                   <td className={`px-4 py-3 text-center text-sm font-bold ${positionClass}`}>
                     {team.position}
@@ -141,7 +132,7 @@ export default function StandingsTable({ standings }: StandingsTableProps) {
                       ))}
                     </div>
                   </td>
-                </motion.tr>
+                </tr>
               );
             })}
           </tbody>
@@ -165,6 +156,6 @@ export default function StandingsTable({ standings }: StandingsTableProps) {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

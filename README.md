@@ -13,12 +13,16 @@ A Next.js web application for the Tanzania Premier League that provides live sco
 
 ## Tech Stack
 
-- **Frontend**: Next.js with TypeScript and Tailwind CSS
-- **Data Fetching**: 
-  - Web scraping with Cheerio and Axios
-  - Local JSON data storage
+- **Frontend**: Next.js 13.5.6 with TypeScript and Tailwind CSS
+- **UI Framework**: React 18.2.0
+- **Data**: Mock data (API integration planned for future)
 - **Styling**: Tailwind CSS for responsive design
+- **Animation**: CSS transitions (Framer Motion integration to be added in future)
 - **Deployment**: Vercel
+
+## Current Status
+
+This project is in active development. We're currently using mock data for all features, with plans to integrate real API data in the future.
 
 ## Getting Started
 
@@ -54,8 +58,8 @@ src/
 
 ## Data Sources
 
-- Live scores are scraped from public football websites using Cheerio
-- Standings, fixtures, and news are stored in local JSON files
+- Currently using mock data for all features
+- Future plans include integration with public football APIs and web scraping
 
 ## Deployment
 
