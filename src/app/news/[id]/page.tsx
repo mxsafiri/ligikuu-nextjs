@@ -6,6 +6,12 @@ import fs from 'fs';
 import path from 'path';
 import { NewsArticle } from '@/types';
 
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
 async function getNewsArticle(id: string): Promise<NewsArticle | null> {
   try {
     // Read from the news JSON file
@@ -27,7 +33,7 @@ async function getNewsArticle(id: string): Promise<NewsArticle | null> {
   }
 }
 
-export default async function NewsArticlePage({ params }: { params: { id: string } }) {
+export default async function NewsArticlePage({ params }: PageProps) {
   const article = await getNewsArticle(params.id);
   
   if (!article) {
