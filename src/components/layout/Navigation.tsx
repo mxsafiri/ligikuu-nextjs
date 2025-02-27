@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import Image from "next/image";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,10 +12,10 @@ export default function Navigation() {
 
   // Navigation routes
   const routes = [
-    { href: "/", label: "Live Scores", icon: "" },
-    { href: "/standings", label: "Standings", icon: "" },
-    { href: "/fixtures", label: "Fixtures", icon: "" },
-    { href: "/news", label: "News", icon: "" },
+    { href: "/", label: "Live Scores", icon: "⚽" },
+    { href: "/standings", label: "Standings", icon: "🏆" },
+    { href: "/fixtures", label: "Fixtures", icon: "📅" },
+    { href: "/news", label: "News", icon: "📰" },
   ];
 
   // Handle scroll effect
@@ -39,36 +38,43 @@ export default function Navigation() {
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled 
           ? "bg-white/95 backdrop-blur-md shadow-md dark:bg-gray-900/95" 
-          : "bg-white dark:bg-gray-900 border-b dark:border-gray-800"
+          : "bg-white dark:bg-gray-900"
       }`}
     >
       <nav className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo and Brand */}
           <div className="flex items-center space-x-4">
-            <Link href="/" className="flex items-center space-x-2 text-xl font-bold transition-transform duration-300 hover:scale-105">
-              <span className="text-green-600 dark:text-green-500">Ligi</span>
-              <span>Kuu</span>
+            <Link 
+              href="/" 
+              className="flex items-center space-x-2 text-xl font-bold transition-transform duration-300 hover:scale-105"
+            >
+              <span className="bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">
+                Ligi
+              </span>
+              <span className="text-gray-900 dark:text-white">Kuu</span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-1">
             {routes.map((route) => (
               <Link
                 key={route.href}
                 href={route.href}
-                className={`flex items-center space-x-2 px-3 py-2 text-sm font-medium transition-colors duration-200
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200
                   ${pathname === route.href
-                    ? "text-green-600 dark:text-green-500"
-                    : "text-gray-700 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-500"
+                    ? "bg-green-50 text-green-600 dark:bg-green-900/20 dark:text-green-400"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-green-600 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-green-400"
                   }`}
               >
                 <span className="text-lg">{route.icon}</span>
                 <span>{route.label}</span>
               </Link>
             ))}
-            <ThemeToggle />
+            <div className="pl-2">
+              <ThemeToggle />
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -76,7 +82,7 @@ export default function Navigation() {
             <ThemeToggle />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-gray-700 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-500 transition-colors duration-200"
+              className="inline-flex items-center justify-center p-2 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-green-600 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-green-400 transition-colors duration-200"
               aria-label="Toggle menu"
             >
               <svg
@@ -100,24 +106,22 @@ export default function Navigation() {
 
         {/* Mobile Navigation */}
         <div
-          className={`md:hidden transition-all duration-300 ease-in-out ${
-            isMenuOpen
-              ? "max-h-96 opacity-100"
-              : "max-h-0 opacity-0 pointer-events-none"
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="space-y-2 pb-4">
+          <div className="space-y-1 px-2 pb-3 pt-2">
             {routes.map((route) => (
               <Link
                 key={route.href}
                 href={route.href}
-                className={`flex items-center space-x-2 px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-lg
+                className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-base font-medium transition-colors duration-200
                   ${pathname === route.href
-                    ? "bg-green-50 text-green-600 dark:bg-green-900/20 dark:text-green-500"
-                    : "text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
+                    ? "bg-green-50 text-green-600 dark:bg-green-900/20 dark:text-green-400"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-green-600 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-green-400"
                   }`}
               >
-                <span className="text-lg">{route.icon}</span>
+                <span className="text-xl">{route.icon}</span>
                 <span>{route.label}</span>
               </Link>
             ))}
