@@ -5,9 +5,11 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 
-const inter = Inter({
+const inter = Inter({ 
   subsets: ["latin"],
   display: "swap",
+  preload: true,
+  weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
 });
 
@@ -24,6 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body
         className={`${inter.variable} min-h-screen flex flex-col antialiased bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-50`}
       >

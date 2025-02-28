@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 interface LiveScoreCardProps {
   id: string;
@@ -26,6 +27,13 @@ export default function LiveScoreCard({
   stadium,
   className = "",
 }: LiveScoreCardProps) {
+  const [homeTeamImageError, setHomeTeamImageError] = useState(false);
+  const [awayTeamImageError, setAwayTeamImageError] = useState(false);
+
+  const getTeamLogo = (teamName: string) => {
+    return `/teams/${teamName.toLowerCase().replace(/\s+/g, '-')}.png`;
+  };
+
   return (
     <Link
       href={`/match/${id}`}
@@ -51,12 +59,13 @@ export default function LiveScoreCard({
         <div className="flex items-center justify-between">
           {/* Home Team */}
           <div className="flex items-center space-x-3">
-            <div className="relative w-12 h-12">
+            <div className="relative w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
               <Image
-                src={`/teams/${homeTeam.toLowerCase().replace(/\s+/g, '-')}.png`}
+                src={homeTeamImageError ? "/team-logos/default.svg" : getTeamLogo(homeTeam)}
                 alt={homeTeam}
                 fill
-                className="object-contain"
+                className="object-contain p-2"
+                onError={() => setHomeTeamImageError(true)}
               />
             </div>
             <span className="font-medium">{homeTeam}</span>
@@ -76,12 +85,13 @@ export default function LiveScoreCard({
           {/* Away Team */}
           <div className="flex items-center space-x-3">
             <span className="font-medium">{awayTeam}</span>
-            <div className="relative w-12 h-12">
+            <div className="relative w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
               <Image
-                src={`/teams/${awayTeam.toLowerCase().replace(/\s+/g, '-')}.png`}
+                src={awayTeamImageError ? "/team-logos/default.svg" : getTeamLogo(awayTeam)}
                 alt={awayTeam}
                 fill
-                className="object-contain"
+                className="object-contain p-2"
+                onError={() => setAwayTeamImageError(true)}
               />
             </div>
           </div>

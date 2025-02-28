@@ -4,7 +4,6 @@
 
 :root {
   --font-sans: var(--font-inter);
-  --font-display: var(--font-outfit);
   --background: #ffffff;
   --foreground: #171717;
   --primary: #008848;  /* Tanzanian flag green */
@@ -12,24 +11,23 @@
   --accent: #fcd116;   /* Tanzanian flag yellow */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #00bb5d;
-    --primary-dark: #008848;
-    --accent: #ffde33;
-  }
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --primary: #00bb5d;
+  --primary-dark: #008848;
+  --accent: #ffde33;
 }
 
 @layer base {
   body {
-    @apply text-gray-900 bg-white dark:text-gray-100 dark:bg-gray-900;
     font-family: var(--font-sans);
+    @apply antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-bold tracking-tight;
+  /* Improve default focus styles */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
   }
 }
 
@@ -55,11 +53,11 @@
   }
 
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-all duration-300;
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-200;
   }
 
-  .card-hover {
-    @apply hover:shadow-xl hover:scale-[1.02];
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
 
