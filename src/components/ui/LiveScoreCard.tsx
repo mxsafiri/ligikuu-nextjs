@@ -1,111 +1,97 @@
-import Image from 'next/image';
+import Image from "next/image";
+import Link from "next/link";
 
 interface LiveScoreCardProps {
+  id: string;
   homeTeam: string;
   awayTeam: string;
-  homeScore: string;
-  awayScore: string;
-  matchTime: string;
-  matchStatus: string;
+  homeScore: number;
+  awayScore: number;
+  status: string;
+  minute: string;
+  competition: string;
+  stadium: string;
+  className?: string;
 }
 
 export default function LiveScoreCard({
+  id,
   homeTeam,
   awayTeam,
   homeScore,
   awayScore,
-  matchTime,
-  matchStatus,
+  status,
+  minute,
+  competition,
+  stadium,
+  className = "",
 }: LiveScoreCardProps) {
-  const isLive = matchStatus === 'In Progress';
-  const hasScores = homeScore !== '' && awayScore !== '';
-  
-  // Get team logo URL - in production, this would come from an API or database
-  const getTeamLogo = (teamName: string) => {
-    return `/team-logos/${teamName.toLowerCase().replace(/\s+/g, '-')}.png`;
-  };
-  
   return (
-    <div 
-      className="card p-4 overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl"
+    <Link
+      href={`/match/${id}`}
+      className={`block rounded-xl bg-white dark:bg-gray-800/50 shadow-sm hover:shadow-md transition-all duration-200 ${className}`}
     >
-      {/* Match Status Banner */}
-      <div className={`-mx-4 -mt-4 px-4 py-2 mb-3 ${isLive ? 'bg-green-500 text-white' : 'bg-gray-100 dark:bg-gray-700'}`}>
-        <div className="flex items-center justify-between">
-          <p className="text-sm font-medium">
-            {isLive ? 'LIVE' : matchStatus}
-          </p>
-          {isLive ? (
-            <div className="flex items-center">
-              <span className="mr-1 h-2 w-2 animate-pulse rounded-full bg-red-500"></span>
-              <span className="text-sm font-medium">{matchTime}</span>
-            </div>
-          ) : (
-            <span className="text-sm font-medium">
-              {matchTime}
+      <div className="p-4">
+        {/* Competition & Status */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-2">
+            <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+              {competition}
             </span>
-          )}
-        </div>
-      </div>
-      
-      {/* Teams and Scores */}
-      <div className="grid grid-cols-3 gap-4 items-center">
-        {/* Home Team */}
-        <div className="flex flex-col items-center space-y-2">
-          <div className="relative w-12 h-12 transition-transform duration-300 hover:scale-110">
-            <Image
-              src={getTeamLogo(homeTeam)}
-              alt={`${homeTeam} logo`}
-              fill
-              className="object-contain"
-              onError={(e) => {
-                // Fallback if image fails to load
-                e.currentTarget.src = '/team-logos/default.png';
-              }}
-            />
           </div>
-          <span className="text-sm font-medium text-center dark:text-gray-200">{homeTeam}</span>
+          <div className="flex items-center space-x-2">
+            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-50 text-red-600 dark:bg-red-900/20 dark:text-red-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600 dark:bg-red-400 mr-1.5 animate-pulse"></span>
+              {status} {minute}
+            </span>
+          </div>
         </div>
 
-        {/* Score */}
-        <div className="flex justify-center items-center">
-          {hasScores ? (
-            <div className="text-2xl font-bold text-center space-x-2 dark:text-white">
-              <span>{homeScore}</span>
-              <span>-</span>
-              <span>{awayScore}</span>
+        {/* Teams & Score */}
+        <div className="flex items-center justify-between">
+          {/* Home Team */}
+          <div className="flex items-center space-x-3">
+            <div className="relative w-12 h-12">
+              <Image
+                src={`/teams/${homeTeam.toLowerCase().replace(/\s+/g, '-')}.png`}
+                alt={homeTeam}
+                fill
+                className="object-contain"
+              />
             </div>
-          ) : (
-            <span className="text-sm text-gray-500 dark:text-gray-400">vs</span>
-          )}
+            <span className="font-medium">{homeTeam}</span>
+          </div>
+
+          {/* Score */}
+          <div className="flex items-center space-x-3 px-4">
+            <span className="text-2xl font-bold tabular-nums">
+              {homeScore}
+            </span>
+            <span className="text-xl font-medium text-gray-400">-</span>
+            <span className="text-2xl font-bold tabular-nums">
+              {awayScore}
+            </span>
+          </div>
+
+          {/* Away Team */}
+          <div className="flex items-center space-x-3">
+            <span className="font-medium">{awayTeam}</span>
+            <div className="relative w-12 h-12">
+              <Image
+                src={`/teams/${awayTeam.toLowerCase().replace(/\s+/g, '-')}.png`}
+                alt={awayTeam}
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Away Team */}
-        <div className="flex flex-col items-center space-y-2">
-          <div className="relative w-12 h-12 transition-transform duration-300 hover:scale-110">
-            <Image
-              src={getTeamLogo(awayTeam)}
-              alt={`${awayTeam} logo`}
-              fill
-              className="object-contain"
-              onError={(e) => {
-                // Fallback if image fails to load
-                e.currentTarget.src = '/team-logos/default.png';
-              }}
-            />
-          </div>
-          <span className="text-sm font-medium text-center dark:text-gray-200">{awayTeam}</span>
+        {/* Stadium */}
+        <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+          {stadium}
         </div>
       </div>
-      
-      {/* Match Details Link */}
-      {isLive && (
-        <div className="mt-4 text-center">
-          <button className="text-sm text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 font-medium underline">
-            Match Details
-          </button>
-        </div>
-      )}
-    </div>
+    </Link>
   );
 }
